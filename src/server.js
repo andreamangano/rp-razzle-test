@@ -7,10 +7,11 @@ import { ServerStyleSheet, ThemeProvider } from 'styled-components'
 import cookieParser from 'cookie-parser'
 import { getDataFromTree, ApolloProvider } from 'react-apollo'
 import theme from './config/theme'
-const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 import client from './utils/stateLink'
 
 const server = express();
+const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
+
 server
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
