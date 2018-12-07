@@ -1,18 +1,24 @@
 import React from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
+import ResourceCard from '../components/resourceCard/ResourceCard'
 
+// @TODO: use fragment
 const getResources = gql`
   query {
     resources {
-      id,
       title,
       author,
+      abstract,
+      tags,
+      slug,
+      publishedAt,
     }
   }
 `
 
 class Home extends React.Component {
+  
   render() {
     
     return (
@@ -35,10 +41,13 @@ class Home extends React.Component {
                     {
                       data.resources.map(({
                         id,
-                        title,
-                        author,
+                        ...rest,
                       }) => (
-                        <li key={id}>{title} - {author}</li>
+                        <li key={id}>
+                          <ResourceCard
+                            {...rest}
+                          />
+                        </li>
                       ))
                     }
                   </ul>
